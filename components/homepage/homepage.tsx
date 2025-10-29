@@ -1,7 +1,7 @@
 'use client';
 
 import './homepage.css';
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef, ReactNode, useMemo } from 'react';
 
 export default function Homepage() {
   const projects = [
@@ -17,6 +17,29 @@ export default function Homepage() {
     'INFO X',
     'The 4.6'
   ];
+
+  // Use the 7 images from public/portfolio, shuffled once per render lifecycle
+  const portfolioImages = [
+    '/portfolio/Project-Cover-ANF.jpg',
+    '/portfolio/Project-Cover-Cactus.jpg',
+    '/portfolio/Project-Cover-Cyberthum.jpg',
+    '/portfolio/Project-Cover-GD-Goenka.jpg',
+    '/portfolio/Project-Cover-INFOX.jpg',
+    '/portfolio/Project-Cover-TARC.jpg',
+    '/portfolio/Project-Cover-The54.jpg',
+  ];
+
+  const shuffledImages = useMemo(() => {
+    const arr = [...portfolioImages];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, []);
+
+  // Limit to 7 cards and let titles be handled later
+  const displayedProjects = useMemo(() => projects.slice(2, 9), [projects]);
 
   const services = [
     'Brand Strategy',
@@ -71,19 +94,33 @@ export default function Homepage() {
             <PortfolioTitle text="Portfolio" />
           </div>
           <div className="portfolio-grid">
-            {projects.slice(2).map((project, index) => (
-              <div key={index + 2} className={`portfolio-item ${index === 0 ? 'portfolio-item-right-only' : ''}`}>
-                {index === 0 && (
-                  <div className="portfolio-title-left">
-                    <PortfolioTitle text="Portfolio" />
-                  </div>
-                )}
-                <div className="project-image"></div>
+            {displayedProjects.map((project, index) => (
+              <div key={index} className={`portfolio-item ${index === 0 ? 'portfolio-item-right-only' : ''}`}>
+                <div 
+                  className="project-image"
+                  style={{
+                    backgroundImage: `url(${shuffledImages[index]})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                ></div>
                 <div className="project-name">{project}</div>
               </div>
             ))}
           </div>
-          <button className="view-all-button">View All</button>
+          <button className="view-all-button">
+            {'View All'.split('').map((char, index) => (
+              <span
+                key={index}
+                className="view-all-char-wrapper"
+                style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
+              >
+                <span className="view-all-char">{char === ' ' ? '\u00A0' : char}</span>
+                <span className="view-all-char">{char === ' ' ? '\u00A0' : char}</span>
+              </span>
+            ))}
+          </button>
         </div>
       </section>
 
@@ -124,12 +161,7 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Footer Section */}
-      <section className="footer-section">
-        <div className="footer-container">
-          <p>© 2024 Oddpartikle. All rights reserved.</p>
-        </div>
-      </section>
+      {/* Removed placeholder homepage footer section to avoid blank space before global Footer */}
     </div>
   );
 }
@@ -335,8 +367,8 @@ function BrandStatement({ text }: { text: string }) {
       const viewportHeight = window.innerHeight;
       // Section starts animating when its top is 80% down the viewport,
       // and finishes when its bottom reaches 20% up the viewport
-      const enterPoint = viewportHeight * 0.8;
-      const exitPoint = viewportHeight * 0.2;
+      const enterPoint = viewportHeight * 1.4;
+      const exitPoint = viewportHeight * 0.5;
       const distance = rect.height + (enterPoint - exitPoint);
       const traveled = Math.min(Math.max(enterPoint - rect.top, 0), Math.max(distance, 1));
       return Math.min(Math.max(traveled / Math.max(distance, 1), 0), 1);

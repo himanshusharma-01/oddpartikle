@@ -147,14 +147,15 @@
   }
 
   .portfolio-title-container {
-    position: absolute;
-    top: 50%;
-    left: -15rem;
-    transform: translateY(-50%);
-    z-index: 10;
-    padding: 0 10px;
-    width: 200px;
-    display: none; /* Hide the portfolio title that appears under grid */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    z-index: 20;
+    padding: 0;
+    width: auto;
+    display: block; /* show the portfolio title above grid */
+    margin-bottom: 2rem;
   }
 
   .portfolio-title-text {
@@ -197,18 +198,18 @@
   /* First card positioned on right side only */
   .portfolio-item-right-only {
     grid-column: 2;
-    justify-self: end;
+    justify-self: stretch; /* ensure same width as other cards */
  
     /* Ensure same size as other cards */
     padding: 3rem;
-    min-height: 350px;
+    min-height: 420px;
     position: relative;
   }
 
   /* Portfolio title positioned on left side of first card */
   .portfolio-title-left {
     position: absolute;
-    left: -55rem;
+    left: clamp(-12rem, -18vw, -8rem); /* keep visible within viewport */
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
@@ -218,8 +219,8 @@
   .portfolio-item {
     background: #f8f8f8;
     border-radius: 8px;
-    padding: 3rem;
-    min-height: 350px;
+    padding: 3.5rem;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -231,13 +232,15 @@
   .portfolio-item:hover {
     transform: translateY(-5px);
   }
+
+  /* removed inline grid title */
   
   .project-image {
     width: 100%;
-    height: 200px;
-    background: #e5e5e5;
+    height: 260px;
     margin-bottom: 1.5rem;
     border-radius: 4px;
+    overflow: hidden;
   }
   
   .project-name {
@@ -256,12 +259,35 @@
     font-size: 15rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    border: none;
   }
   
-  .view-all-button:hover {
-    background: #171717;
-    color: #ffffff;
+  .view-all-char-wrapper {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: bottom;
+    height: 1em;
+  }
+  
+  .view-all-char-wrapper > span {
+    display: block;
+    line-height: 1em;
+    animation: none;
+  }
+  
+.view-all-button:hover .view-all-char-wrapper > span {
+  animation: rollUp 0.3s linear forwards;
+  animation-delay: var(--delay, 0s);
+}
+  
+  @keyframes rollUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
   }
   
   /* Services Section */
@@ -547,24 +573,24 @@
     
     .portfolio-item-right-only {
       grid-column: 2;
-      justify-self: end;
+      justify-self: stretch; /* ensure same width as other cards */
       padding: 2rem;
-      min-height: 300px;
+      min-height: 360px;
       position: relative;
     }
 
     .portfolio-title-left {
-      left: -12rem;
+      left: -6rem; /* tighter on small screens to avoid clipping */
       width: 150px;
     }
     
     .portfolio-item {
       padding: 2rem;
-      min-height: 300px;
+      min-height: 360px;
     }
     
     .project-image {
-      height: 150px;
+      height: 200px;
     }
     
     .journal-title-text {
@@ -640,7 +666,7 @@
       grid-column: 1;
       justify-self: stretch;
       padding: 2rem;
-      min-height: 250px;
+      min-height: 300px;
       position: relative;
     }
 
@@ -721,12 +747,4 @@
     }
   }
 
-/* Footer Section */
-.footer-section {
-  padding: 4rem 0;
-  background-color: #f0f0f0 !important; /* Gray shade of white */
-  border-top: 1px solid #e5e5e5;
-  position: relative;
-  z-index: 10; /* Higher z-index to appear above hero section */
-  min-height: 50vh; /* ensure footer takes up space at the end */
-}
+/* Removed homepage placeholder footer styles */
