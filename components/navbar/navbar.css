@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 50;
-    background-color: #F5E6D3;
+    background-color: #FAF3E7; /* lighter beige */
     border-bottom: 1px solid #e5e5e5;
+    padding-top: 0.5rem; /* slight upper padding */
   }
   
   .navbar-container {
@@ -50,6 +53,7 @@
     font-size: 0.9375rem;
     font-weight: 500;
     color: #374151;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     transition: color 0.2s ease-in-out;
   }
   
@@ -79,7 +83,7 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border-top: 1px solid #e5e5e5;
-    background-color: #F5E6D3;
+    background-color: #FAF3E7; /* lighter beige */
   }
   
   @media (min-width: 768px) {
@@ -100,6 +104,7 @@
     color: #374151;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     transition: color 0.2s ease-in-out;
   }
   

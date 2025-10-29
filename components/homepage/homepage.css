@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* Homepage Container */
 .homepage {
     width: 100%;
@@ -5,13 +6,19 @@
   
   /* Hero Section */
   .hero-section {
-    position: relative !important;
-    min-height: 100vh !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: #fafafa !important;
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: flex-end;
+    justify-content: flex-start !important;
     overflow: hidden !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    z-index: 1;
   }
   
   .hero-background {
@@ -59,22 +66,56 @@
     background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 60%);
     filter: blur(60px);
   }
+
+  .hero-curve {
+    position: absolute;
+    top: 40%;
+ 
+    right: -40%;
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    background: radial-gradient(ellipse 120% 100% at 80% 20%, #F5E6D3 0%, #F5E6D3 40%, transparent 60%);
+    z-index: 1;
+  }
   
   .hero-content {
     position: relative;
     z-index: 10;
-    text-align: center;
-    max-width: 900px;
-    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    max-width: 60%;
+    margin-right: auto;
+    text-align: right;
+    padding: 0;
+    margin-bottom: 7rem;
   }
   
   .hero-heading {
-    font-size: 4rem !important;
-    font-weight: 400 !important;
+    font-size: 5rem !important;
+    font-weight: 500 !important;
     line-height: 1.1 !important;
     letter-spacing: -0.02em !important;
     color: #171717 !important;
     margin: 0 0 2rem 0 !important;
+  }
+
+  /* Ensure text block aligns to the right inside flex container */
+  .hero-content > .hero-heading,
+  .hero-content > * {
+    text-align: right;
+    width: 100%;
+  }
+
+  .hero-ampersand {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+    letter-spacing: -1px !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    line-height: 0.3 !important;
+    font-size: inherit !important;
   }
   
   .hero-subheading {
@@ -93,31 +134,98 @@
   .portfolio-section {
     padding: 6rem 0;
     background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
   }
-  
+
   .portfolio-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+  }
+
+  .portfolio-title-container {
+    position: absolute;
+    top: 50%;
+    left: -15rem;
+    transform: translateY(-50%);
+    z-index: 10;
+    padding: 0 10px;
+    width: 200px;
+    display: none; /* Hide the portfolio title that appears under grid */
+  }
+
+  .portfolio-title-text {
+    color: #171717;
+    margin: 0;
+    font-weight: 700 !important;
+    line-height: 1.05;
+    letter-spacing: -0.15rem;
+    font-size: 4.3rem;
+    text-align: left;
+  }
+
+  /* Keep characters of portfolio title together on one line */
+  .portfolio-wordwrap {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* Character-by-character reveal for portfolio title */
+  .portfolio-char {
+    color: #bdbdbd;
+    opacity: 0.3;
+    display: inline-block;
+    transition: color 220ms ease, opacity 220ms ease;
+    font-weight: 530;
+  }
+  .portfolio-char.portfolio-char--visible {
+    color: #171717;
+    opacity: 1;
+    font-weight: 530;
   }
   
   .portfolio-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-    gap: 2rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 3rem !important;
     margin-bottom: 3rem !important;
+  }
+
+  /* First card positioned on right side only */
+  .portfolio-item-right-only {
+    grid-column: 2;
+    justify-self: end;
+ 
+    /* Ensure same size as other cards */
+    padding: 3rem;
+    min-height: 350px;
+    position: relative;
+  }
+
+  /* Portfolio title positioned on left side of first card */
+  .portfolio-title-left {
+    position: absolute;
+    left: -55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 200px;
   }
   
   .portfolio-item {
     background: #f8f8f8;
     border-radius: 8px;
-    padding: 2rem;
-    min-height: 200px;
+    padding: 3rem;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
+    border: none; /* Remove any border */
   }
   
   .portfolio-item:hover {
@@ -126,14 +234,14 @@
   
   .project-image {
     width: 100%;
-    height: 120px;
+    height: 200px;
     background: #e5e5e5;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     border-radius: 4px;
   }
   
   .project-name {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: #171717;
     text-align: center;
@@ -143,10 +251,9 @@
     display: block;
     margin: 0 auto;
     padding: 1rem 2rem;
-    border: 1px solid #171717;
     background: transparent;
     color: #171717;
-    font-size: 1rem;
+    font-size: 15rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -160,113 +267,230 @@
   /* Services Section */
   .services-section {
     padding: 6rem 0;
-    background-color: #fafafa;
+    background-color: #ffffff; /* White background for the section */
+    position: relative;
+    z-index: 2;
   }
-  
+
   .services-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
   }
-  
-  .services-content {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
-    gap: 4rem !important;
-    align-items: start !important;
+
+  .services-content-wrapper {
+    background-color: #f0f0f0; /* Gray background for the highlighted box */
+    padding: 4rem 3rem; /* Padding inside the gray box */
+    border-radius: 40px; /* Rounded corners for the box */
+    margin: 0 auto;
   }
   
   .services-heading {
-    font-size: 1.5rem;
-    line-height: 1.6;
+    font-size: 3rem;
+    line-height: 1.5;
     color: #171717;
-    font-weight: 400;
-    margin: 0;
+    font-weight: 500;
+    margin: 0 0 3rem 0;
+    text-align: center;
   }
   
-  .services-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
   }
   
   .service-item {
     font-size: 1.1rem;
     color: #171717;
     font-weight: 500;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 2rem 1.5rem;
+    background: transparent; /* White background for service items */
+    border-radius: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for contrast */
   }
   
-  .service-item:last-child {
-    border-bottom: none;
+  .service-item:hover {
+    background: #f8f8f8; /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
   /* Journal Section */
   .journal-section {
-    padding: 4rem 0;
+    padding: 6rem 0;
     background-color: #ffffff;
     border-top: 1px solid #e5e5e5;
+    position: relative;
+    z-index: 2;
+    overflow: visible; /* Allow title to extend beyond section */
   }
   
   .journal-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
   }
-  
-  .journal-title {
-    font-size: 1.5rem;
-    font-weight: 500;
+
+  .journal-title-container {
+    position: relative;
+    margin-bottom: 3rem;
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .journal-title-text {
     color: #171717;
-    margin-bottom: 2rem;
+    margin: 0;
+    font-weight: 700 !important;
+    line-height: 1.05;
+    letter-spacing: -0.15rem;
+    font-size: 4.3rem;
+    text-align: left;
+  }
+
+  /* Keep characters of journal title together on one line */
+  .journal-wordwrap {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* Character-by-character reveal for journal title */
+  .journal-char {
+    color: #bdbdbd;
+    opacity: 0.3;
+    display: inline-block;
+    transition: color 220ms ease, opacity 220ms ease;
+    font-weight: 530;
+  }
+  .journal-char.journal-char--visible {
+    color: #171717;
+    opacity: 1;
+    font-weight: 530;
   }
   
+  .journal-content {
+    margin-top: 2rem;
+  }
+
   .journal-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 2rem !important;
   }
   
   .journal-post {
-    font-size: 1.1rem;
-    color: #171717;
-    padding: 1.5rem;
-    background: #f8f8f8;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .journal-post:hover {
-    background: #f0f0f0;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .journal-image {
+    width: 100%;
+    height: 280px; /* Increased from 200px */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .journal-text {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    color: #171717;
+    font-weight: 500;
+    text-align: center;
   }
   
   /* Brand Statement Section */
   .brand-statement {
-    padding: 4rem 0;
-    background-color: #fafafa;
+    padding: 0 0 4rem 0; /* remove top padding to close gap */
+    background-color: #f5f5f5;
     border-top: 1px solid #e5e5e5;
+    width: 100vw; /* full viewport width */
+    margin-left: calc(50% - 50vw); /* breakout from centered parent */
+    position: relative;
+    z-index: 2;
+    margin-top: calc(100vh + 2rem); /* push it below the fixed hero with extra margin */
+    overflow: hidden; /* contain decorative bottom bg */
+    font-weight: 700 !important;
+  }
+
+  /* Add subtle bottom background shape */
+  .brand-statement::after {
+    content: '';
+    position: absolute;
+    bottom: -8rem;
+    right: -25%;
+    width: 150%;
+    height: 40vh;
+    background: radial-gradient(ellipse 110% 80% at 80% 0%, #f5f5f5 0%, #f5f5f5 55%, transparent 75%);
+    pointer-events: none;
+    z-index: 1;
   }
   
   .brand-statement-content {
-    max-width: 900px;
+    max-width: none; /* remove width cap for full-width layout */
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2rem; /* keep safe side gutters */
+    position: relative;
+    z-index: 2; /* above bottom bg */
   }
   
   .brand-statement-text {
-    font-size: 1.5rem;
-    line-height: 1.6;
     color: #171717;
-    font-weight: 400;
-    text-align: center;
     margin: 0;
+    margin-top: 15rem; /* add top margin to the text */
+    margin-bottom: 15rem; /* match bottom margin to top */
+    padding: 0 10px; /* add 10px padding left and right */
+    /* display-1 inspired typography */
+    font-weight: 700 !important;
+    line-height: 1.05;
+    letter-spacing: -0.15rem;
+    text-indent: 0%;
+    font-size: 4.3rem; /* desktop default */
+    text-align: left; /* start from left as requested */
+  }
+
+  /* Keep characters of a word together on one line */
+  .brand-wordwrap {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* Character-by-character reveal (fast) */
+  .brand-char {
+    color: #bdbdbd;
+    opacity: 0.3;
+    display: inline-block;
+    transition: color 220ms ease, opacity 220ms ease;
+    font-weight: 530; /* uniform weight per request */
+  }
+  .brand-char.brand-char--visible {
+    color: #171717;
+    opacity: 1;
+    font-weight: 530; /* remove extra boldness */
   }
   
   /* Responsive Design */
   @media (max-width: 768px) {
+    .hero-content {
+      max-width: 70%;
+      padding: 0 1.5rem;
+    }
+    
     .hero-heading {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem + 3px);
+      font-weight: 500 !important;
     }
     
     .hero-subheading {
@@ -286,23 +510,87 @@
       right: -200px;
     }
     
-    .services-content {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .hero-curve {
+      top: 40%;
+      right: -30%;
+      width: 70%;
+      height: 60%;
+    }
+    
+    .services-content-wrapper {
+      padding: 3rem 2rem; /* Reduced padding for tablet */
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
     }
     
     .services-heading {
-      font-size: 1.25rem;
+      font-size: 2rem; /* Reduced font size for tablet */
+      margin-bottom: 2rem;
+    }
+    
+    .service-item {
+      padding: 1.5rem 1rem;
+      font-size: 1rem;
+    }
+    
+    .portfolio-title-text {
+      font-size: 3rem;
     }
     
     .portfolio-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .portfolio-item-right-only {
+      grid-column: 2;
+      justify-self: end;
+      padding: 2rem;
+      min-height: 300px;
+      position: relative;
+    }
+
+    .portfolio-title-left {
+      left: -12rem;
+      width: 150px;
+    }
+    
+    .portfolio-item {
+      padding: 2rem;
+      min-height: 300px;
+    }
+    
+    .project-image {
+      height: 150px;
+    }
+    
+    .journal-title-text {
+      font-size: 3rem;
     }
     
     .journal-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+    
+    .journal-post {
+      padding: 0;
+    }
+
+    .journal-image {
+      height: 200px; /* Increased from 150px */
+    }
+
+    .journal-text {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    
+    .journal-title-container {
+      margin-bottom: 2rem;
     }
     
     .brand-statement {
@@ -312,21 +600,104 @@
     .brand-statement-text {
       font-size: 1.25rem;
     }
+    /* Brand statement responsive */
+    .brand-statement-text {
+      font-size: 3rem;
+      text-indent: 0%;
+      letter-spacing: -0.08rem;
+      line-height: 1.15;
+      text-align: left;
+    }
   }
   
   @media (max-width: 480px) {
+    .hero-content {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+    
     .hero-heading {
+      font-size: calc(2rem + 3px);
+    }
+    
+    .hero-curve {
+      top: 50%;
+      right: -40%;
+      width: 60%;
+      height: 50%;
+    }
+    
+    .portfolio-title-text {
       font-size: 2rem;
     }
     
-    .hero-content {
-      padding: 0 1rem;
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .portfolio-item-right-only {
+      grid-column: 1;
+      justify-self: stretch;
+      padding: 2rem;
+      min-height: 250px;
+      position: relative;
+    }
+
+    .portfolio-title-left {
+      left: -8rem;
+      width: 120px;
+    }
+    
+    .journal-title-text {
+      font-size: 2rem;
+    }
+    
+    .journal-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    
+    .journal-post {
+      padding: 0;
+    }
+
+    .journal-image {
+      height: 160px; /* Increased from 120px */
+    }
+
+    .journal-text {
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+    
+    .journal-title-container {
+      margin-bottom: 1.5rem;
+    }
+    
+    .services-content-wrapper {
+      padding: 2rem 1.5rem; /* Further reduced padding for mobile */
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    
+    .services-heading {
+      font-size: 1.5rem; /* Smaller font size for mobile */
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-item {
+      padding: 1.25rem 1rem;
+      font-size: 0.95rem;
     }
     
     .portfolio-container,
     .services-container,
     .journal-container {
-      padding: 0 1rem;
+      padding: 0 2rem; /* Keep some padding for mobile */
     }
     
     .brand-statement {
@@ -340,4 +711,22 @@
     .brand-statement-text {
       font-size: 1.1rem;
     }
+    /* Brand statement responsive */
+    .brand-statement-text {
+      font-size: 2rem;
+      text-indent: 0%;
+      letter-spacing: -0.05rem;
+      line-height: 1.2;
+      text-align: left;
+    }
   }
+
+/* Footer Section */
+.footer-section {
+  padding: 4rem 0;
+  background-color: #f0f0f0 !important; /* Gray shade of white */
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+  z-index: 10; /* Higher z-index to appear above hero section */
+  min-height: 50vh; /* ensure footer takes up space at the end */
+}
