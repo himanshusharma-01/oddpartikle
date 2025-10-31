@@ -90,22 +90,38 @@ export default function Homepage() {
       {/* Portfolio Grid Section */}
       <section className="portfolio-section">
         <div className="portfolio-container">
-          <div className="portfolio-title-container">
-            <PortfolioTitle text="Portfolio" />
-          </div>
-          <div className="portfolio-grid">
-            {displayedProjects.map((project, index) => (
-              <div key={index} className={`portfolio-item ${index === 0 ? 'portfolio-item-right-only' : ''}`}>
-                <div 
-                  className="project-image"
-                  style={{
-                    backgroundImage: `url(${shuffledImages[index]})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  }}
-                ></div>
-                <div className="project-name">{project}</div>
+          <div className="portfolio-split">
+            {/* First tile: title */}
+            <div className="portfolio-tile title-tile">
+              <PortfolioTitle text="Portfolio" />
+            </div>
+
+            {/* Second tile: first image with caption */}
+            <div
+              className="portfolio-tile image-tile has-caption"
+              style={{
+                backgroundImage: `url(${shuffledImages[0]})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              <div className="tile-caption">{displayedProjects[0]}</div>
+            </div>
+
+            {/* Remaining images fill the grid in rows of two */}
+            {shuffledImages.slice(1).map((img, i) => (
+              <div
+                key={`tile-${i}`}
+                className="portfolio-tile image-tile has-caption"
+                style={{
+                  backgroundImage: `url(${img})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+                <div className="tile-caption">{displayedProjects[i + 1] || ''}</div>
               </div>
             ))}
           </div>
