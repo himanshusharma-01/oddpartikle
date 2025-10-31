@@ -1,0 +1,229 @@
+.about-page {
+    background-color: #fafafa;
+    min-height: 100vh;
+  }
+  
+  /* Hero Section */
+  .about-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 9rem 2rem;
+    text-align: left;
+    
+  }
+  
+  .hero-main-heading {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #171717;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  
+  .hero-subheading {
+    font-size: 2rem;
+    line-height: 1.5;
+    color: #171717;
+    font-weight: 500;
+    margin-bottom: 5rem;
+    max-width: 1000px;
+
+  }
+  
+  /* Client Banner */
+  .client-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding: 2rem 0;
+  }
+  
+  .client-logo {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #171717;
+    padding: 1rem 1.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background: white;
+  }
+  
+  /* Section Styles */
+  .founder-section,
+  .about-section,
+  .services-section,
+  .cta-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .section-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #171717;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .section-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #171717;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  
+  .section-divider {
+    height: 1px;
+    background-color: #e5e5e5;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Service Buttons */
+  .service-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0 3rem 0;
+    justify-content: center;
+  }
+  
+  .service-button {
+    padding: 1.5rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #171717;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+  }
+  
+  .service-button:hover {
+    border-color: #171717;
+    transform: translateY(-2px);
+  }
+  
+  .service-button.active {
+    background: #171717;
+    color: white;
+    border-color: #171717;
+  }
+  
+  /* Service Details */
+  .service-details {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    border: 1px solid #e5e5e5;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #171717;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .service-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .service-item {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #171717;
+    padding: 1rem;
+    background: #f8f8f8;
+    border-radius: 6px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+  }
+  
+  .cta-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #171717;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-hero,
+    .founder-section,
+    .about-section,
+    .services-section,
+    .cta-section {
+      padding: 3rem 1rem;
+    }
+    
+    .hero-main-heading {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subheading {
+      font-size: 1.125rem;
+    }
+    
+    .client-banner {
+      gap: 1rem;
+    }
+    
+    .client-logo {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+    }
+    
+    .service-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .service-button {
+      min-width: 200px;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .service-details {
+      padding: 2rem 1.5rem;
+    }
+    
+    .service-items {
+      grid-template-columns: 1fr;
+    }
+    
+    .cta-heading {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-main-heading {
+      font-size: 2rem;
+    }
+    
+    .section-heading {
+      font-size: 1.25rem;
+    }
+    
+    .section-text {
+      font-size: 1rem;
+    }
+  }
