@@ -21,7 +21,16 @@ export default function Navbar() {
         <div className="navbar-content">
           {/* Logo */}
           <Link href="/" className="navbar-logo">
-            Oddpartikle
+            {'Oddpartikle'.split('').map((char, index) => (
+              <span
+                key={index}
+                className="navbar-char-wrapper"
+                style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
+              >
+                <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+              </span>
+            ))}
           </Link>
 
           {/* Desktop Navigation */}
@@ -32,7 +41,16 @@ export default function Navbar() {
                 href={item.href}
                 className="navbar-link"
               >
-                {item.name}
+                {item.name.split('').map((char, index) => (
+                  <span
+                    key={index}
+                    className="navbar-char-wrapper"
+                    style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
+                  >
+                    <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                    <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                  </span>
+                ))}
               </Link>
             ))}
           </div>
@@ -59,7 +77,16 @@ export default function Navbar() {
                   className="navbar-mobile-link"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.name}
+                  {item.name.split('').map((char, index) => (
+                    <span
+                      key={index}
+                      className="navbar-char-wrapper"
+                      style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
+                    >
+                      <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                      <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                    </span>
+                  ))}
                 </Link>
               ))}
             </div>

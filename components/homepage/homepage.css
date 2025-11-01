@@ -132,7 +132,7 @@
   
   /* Portfolio Section */
   .portfolio-section {
-    padding: 6rem 0;
+    padding: 2rem 0;
     background-color: #ffffff;
     position: relative;
     z-index: 2;
@@ -157,6 +157,7 @@
     letter-spacing: -0.15rem;
     font-size: 4.3rem;
     text-align: left;
+    margin-bottom: 5rem;
   }
 
   /* Keep characters of portfolio title together on one line */
@@ -195,10 +196,19 @@
     overflow: hidden;
   }
 
+  .portfolio-tile-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .title-tile {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
+    padding-bottom: 1.5rem;
+    padding-left: 5%;
+    padding-top: 0;
   }
 
   .image-tile {
@@ -207,6 +217,9 @@
     background-repeat: no-repeat;
     /* prepare for hover zoom/blur via pseudo-element */
     isolation: isolate;
+    aspect-ratio: 1 / 1;
+    width: 90%;
+    margin: 0 auto;
   }
 
   /* create a layer to animate without affecting caption */
@@ -218,33 +231,26 @@
     background-size: inherit;
     background-position: inherit;
     background-repeat: inherit;
-    transform: scale(1);
+    transform: scale(1.1);
     transition: transform 400ms ease, filter 400ms ease;
     will-change: transform, filter;
     z-index: -1;
+    filter: blur(0);
   }
 
   .image-tile:hover::before {
-    transform: scale(1.15);
+    transform: scale(1);
     filter: blur(6px);
   }
 
-  .has-caption::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 35%;
-    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
-    pointer-events: none;
-  }
-
   .tile-caption {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 0.8rem 1rem;
-    color: #fff;
+    margin-top: 1rem;
+    padding: 0;
+    padding-left: 5%;
+    color: #000000;
     font-weight: 600;
     font-size: 1rem;
+    text-align: left;
   }
 
   /* First card positioned on right side only */

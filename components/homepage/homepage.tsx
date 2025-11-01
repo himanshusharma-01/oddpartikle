@@ -97,30 +97,31 @@ export default function Homepage() {
             </div>
 
             {/* Second tile: first image with caption */}
-            <div
-              className="portfolio-tile image-tile has-caption"
-              style={{
-                backgroundImage: `url(${shuffledImages[0]})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
-            >
+            <div className="portfolio-tile-wrapper">
+              <div
+                className="portfolio-tile image-tile"
+                style={{
+                  backgroundImage: `url(${shuffledImages[0]})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              ></div>
               <div className="tile-caption">{displayedProjects[0]}</div>
             </div>
 
             {/* Remaining images fill the grid in rows of two */}
             {shuffledImages.slice(1).map((img, i) => (
-              <div
-                key={`tile-${i}`}
-                className="portfolio-tile image-tile has-caption"
-                style={{
-                  backgroundImage: `url(${img})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              >
+              <div key={`tile-${i}`} className="portfolio-tile-wrapper">
+                <div
+                  className="portfolio-tile image-tile"
+                  style={{
+                    backgroundImage: `url(${img})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                ></div>
                 <div className="tile-caption">{displayedProjects[i + 1] || ''}</div>
               </div>
             ))}
@@ -195,9 +196,12 @@ function PortfolioTitle({ text }: { text: string }) {
     const computeProgress = (): number => {
       const rect = container.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const enterPoint = viewportHeight * 0.8;
-      const exitPoint = viewportHeight * 0.2;
-      const distance = rect.height + (enterPoint - exitPoint);
+      // Adjust enter/exit points to account for 5rem margin-bottom
+      const enterPoint = viewportHeight * 0.85;
+      const exitPoint = viewportHeight * 0.15;
+      // Include margin-bottom (5rem = 80px) in distance calculation
+      const marginBottom = 80;
+      const distance = rect.height + marginBottom + (enterPoint - exitPoint);
       const traveled = Math.min(Math.max(enterPoint - rect.top, 0), Math.max(distance, 1));
       return Math.min(Math.max(traveled / Math.max(distance, 1), 0), 1);
     };
