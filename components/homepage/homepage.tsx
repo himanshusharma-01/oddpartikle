@@ -1,9 +1,12 @@
 'use client';
 
 import './homepage.css';
-import { useEffect, useRef, ReactNode, useMemo } from 'react';
+import { useEffect, useRef, ReactNode, useMemo, useState } from 'react';
 
 export default function Homepage() {
+  const [heroScrolled, setHeroScrolled] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const brandStatementRef = useRef<HTMLElement>(null);
   const projects = [
     'Pagenta',
     'TARC',
@@ -57,10 +60,57 @@ export default function Homepage() {
   const brandStatement =
     'We design brands that shape environments and influence culture. Our partners are forward thinkers who view design as an engine for change, people who build futures and reshape spaces.';
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const threshold = 100; // Start fixing after 100px of scroll
+      
+      if (scrollY > threshold) {
+        setHeroScrolled(true);
+      } else {
+        setHeroScrolled(false);
+      }
+
+      // Parallax slow scroll for brand statement
+      if (brandStatementRef.current) {
+        const section = brandStatementRef.current;
+        const rect = section.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const sectionHeight = rect.height;
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+
+        // Calculate when section enters and should start slowing
+        const sectionStart = section.offsetTop;
+        const scrollIntoSection = scrollY - sectionStart + viewportHeight;
+        
+        // Apply slow scroll when section is in viewport
+        // Make the section scroll at 40% speed (slower) so it takes longer to scroll through
+        if (scrollIntoSection > 0 && scrollIntoSection < sectionHeight + viewportHeight) {
+          const parallaxSpeed = 0.4; // 40% of normal scroll speed
+          const parallaxOffset = scrollIntoSection * (1 - parallaxSpeed);
+          section.style.transform = `translateY(${parallaxOffset}px)`;
+        } else if (scrollIntoSection <= 0) {
+          section.style.transform = 'translateY(0)';
+        } else {
+          // Section has fully scrolled through, reset transform
+          section.style.transform = 'translateY(0)';
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="homepage">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section ref={heroSectionRef} className={`hero-section ${heroScrolled ? 'scrolled' : ''}`}>
         <div className="hero-background">
           <div className="golden-corner top-left"></div>
           <div className="golden-corner top-right"></div>
@@ -73,15 +123,15 @@ export default function Homepage() {
           <h1 className="hero-heading">
                     Building the next 
             <br />
-            <span>generation of products , brands</span>
-            <span className="hero-ampersand">{' '}&{' '}</span>
+            <span>generation of products, brands</span>
+            <span className="hero-ampersand">{'   '} & {'  '}</span>
             
             experiences.
           </h1>
         </div>
       </section>
 
-      <section className="brand-statement">
+      <section ref={brandStatementRef} className="brand-statement">
       <div className="brand-statement-content">
         <BrandStatement text={brandStatement} />
       </div>
