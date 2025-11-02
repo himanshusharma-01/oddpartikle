@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import './navbar.css';
 
@@ -35,23 +36,27 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="navbar-desktop">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="navbar-link"
-              >
-                {item.name.split('').map((char, index) => (
-                  <span
-                    key={index}
-                    className="navbar-char-wrapper"
-                    style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
-                  >
-                    <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
-                    <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
-                  </span>
-                ))}
-              </Link>
+            {navigation.map((item, index) => (
+              <React.Fragment key={item.name}>
+                <Link
+                  href={item.href}
+                  className="navbar-link"
+                >
+                  {item.name.split('').map((char, charIndex) => (
+                    <span
+                      key={charIndex}
+                      className="navbar-char-wrapper"
+                      style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${charIndex * 0.02}s` }}
+                    >
+                      <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                      <span className="navbar-char">{char === ' ' ? '\u00A0' : char}</span>
+                    </span>
+                  ))}
+                </Link>
+                {index < navigation.length - 1 && (
+                  <span className="navbar-separator">/</span>
+                )}
+              </React.Fragment>
             ))}
           </div>
 

@@ -1,31 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
 /* Homepage Container */
 .homepage {
     width: 100%;
     background-color: #ffffff;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Add spacing after hero for scrolling content */
+  .homepage > section:first-of-type {
+    position: relative;
+    z-index: 2;
   }
   
   /* Hero Section */
   .hero-section {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    background-color: transparent !important;
     display: flex !important;
     align-items: flex-end;
     justify-content: flex-start !important;
     overflow: hidden !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 4rem !important;
-    z-index: 1;
-    transform: translateY(0);
-    transition: transform 0.1s ease-out;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 3rem !important;
+    padding-top: 0 !important;
+    z-index: 1 !important;
+    transition: background-color 0.3s ease-in-out;
   }
-
-  .hero-section.scrolled {
-    transform: translateY(-30vh);
+  
+  /* Hero section with white background when brand statement crosses */
+  .hero-section--white {
+    background-color: #ffffff !important;
+  }
+  
+  .hero-section--white .hero-background {
+    opacity: 1; /* Keep background visible even when white */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .hero-section:not(.hero-section--white) .hero-background {
+    opacity: 1;
   }
   
   .hero-background {
@@ -34,6 +68,8 @@
     left: 0;
     width: 100%;
     height: 100%;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1 !important; /* Always visible */
   }
   
   .golden-corner {
@@ -90,16 +126,16 @@
     position: relative;
     z-index: 10;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    width: 65%;
-    max-width: 65%;
+    width: 90%;
+    max-width: 90%;
     margin-left: 0;
     margin-right: auto;
-    text-align: right;
+    text-align: left;
     padding: 0;
-    margin-bottom: 4rem;
-    padding-left: 2rem;
+    margin-bottom: 3rem;
+    padding-left: 5rem;
     padding-right: 0;
     border: none;
     outline: none;
@@ -107,22 +143,24 @@
   }
   
   .hero-heading {
-    font-size: 4.8rem !important;
-    font-weight: 500 !important;
-    line-height: 1.1 !important;
-    letter-spacing: -0.02em !important;
+    font-size: 3.8rem !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.015em !important;
+    word-spacing: 0.12em !important;
     color: #171717 !important;
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
     outline: none !important;
     background: transparent !important;
+    text-align: left !important;
   }
 
-  /* Ensure text block aligns to the right inside flex container */
+  /* Ensure text block aligns to the left inside flex container */
   .hero-content > .hero-heading,
   .hero-content > * {
-    text-align: right;
+    text-align: left;
     width: 100%;
   }
 
@@ -153,17 +191,24 @@
   /* Portfolio Section */
   .portfolio-section {
     padding: 0;
-    background-color: #ffffff;
+    padding-top: 4rem !important;
+    margin-top: 0 !important;
+    padding-bottom: 4rem !important;
+    margin-bottom: 0 !important;
+    background-color: #ffffff !important;
     position: relative;
-    z-index: 2;
+    z-index: 10;
     overflow: visible;
   }
 
   .portfolio-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 0.5rem; /* further reduced side padding */
+    padding: 2rem 0.5rem 4rem 0.5rem; /* top padding to connect with brand statement, bottom padding for View All */
+    margin-bottom: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Title is now placed inside the left top square tile */
@@ -205,12 +250,13 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .portfolio-tile {
     position: relative;
-    aspect-ratio: 1 / 1; /* perfect square */
+    aspect-ratio: 4 / 3; /* 800x600 rectangular format */
     width: 100%;
     background: transparent;
     overflow: hidden;
@@ -220,6 +266,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
   }
 
   .title-tile {
@@ -237,7 +285,9 @@
     background-repeat: no-repeat;
     /* prepare for hover zoom/blur via pseudo-element */
     isolation: isolate;
-    aspect-ratio: 1 / 1;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    aspect-ratio: 4 / 3; /* 800x600 rectangular format */
     width: 90%;
     margin: 0 auto;
   }
@@ -264,13 +314,28 @@
   }
 
   .tile-caption {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
     padding: 0;
     padding-left: 5%;
     color: #000000;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.25rem;
     text-align: left;
+    position: relative;
+  }
+
+  /* Character-by-character reveal for tile captions */
+  .caption-char {
+    color: #bdbdbd;
+    opacity: 0.3;
+    display: inline-block;
+    transition: color 220ms ease, opacity 220ms ease;
+  }
+  
+  .caption-char.caption-char--visible {
+    color: #000000;
+    opacity: 1;
   }
 
   /* First card positioned on right side only */
@@ -324,21 +389,42 @@
   }
   
   .view-all-button {
-    display: block;
-    margin: 0;
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom: 4rem;
-    width: calc(100% + 1rem);
-    padding-bottom: 10rem;
+    display: block !important;
+    margin: 2rem 0 0 0;
+    width: 100%;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
     background: transparent;
     color: #171717;
     font-size: 20.1rem;
     font-weight: 500;
     cursor: pointer;
     border: none;
-    margin-top:-10rem;
-    margin-bottom:0;
+    position: relative;
+    z-index: 11;
+    text-align: left;
+    padding-left: 5%;
+    line-height: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .view-all-wrapper {
+    grid-column: 1 / -1;
+    margin-top: 2rem;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    position: relative;
+    z-index: 11;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .portfolio-split .view-all-button {
+    margin-top:25rem;
   }
   
   .view-all-char-wrapper {
@@ -372,77 +458,156 @@
   /* Services Section */
   .services-section {
     padding: 0;
-    background-color: #ffffff; /* White background for the section */
+    padding-top: 3rem !important;
+    margin-top: 0 !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 0 !important;
+    background-color: #f5f5f5 !important; /* Light grey background */
     position: relative;
-    z-index: 2;
+    z-index: 10;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    border-radius: 0;
+    border: none;
   }
 
   .services-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 2rem;
+    padding-top: 0;
+    margin-top: 0;
   }
 
   .services-content-wrapper {
-    background-color: #ffffff; /* White background for the highlighted box */
-    padding: 4rem 3rem; /* Padding inside the gray box */
-    border-radius: 40px; /* Rounded corners for the box */
+    background-color: transparent; /* Transparent since section has background */
+    padding: 0 3rem 4rem 3rem !important; /* Remove top padding to stack directly below View All */
     margin: 0 auto;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-radius: 0;
+    border: none;
   }
   
   .services-heading {
-    font-size: 3rem;
-    line-height: 1.5;
+    font-size: 2.5rem;
+    line-height: 1.2;
     color: #171717;
     font-weight: 500;
-    margin: 0 0 3rem 0;
-    text-align: center;
+    margin: 2rem 0 3rem 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    text-align: left;
+    letter-spacing: -0.01em;
+  }
+
+  /* Word-by-word reveal for services heading */
+  .services-word {
+    color: #bdbdbd;
+    opacity: 0.3;
+    display: inline;
+    transition: color 220ms ease, opacity 220ms ease;
+    font-weight:500;
+  }
+  
+  .services-word.services-word--visible {
+    color: #171717;
+    opacity: 1;
+    font-weight:500;
+  }
+  
+  /* Service words get highlighted when visible */
+  .services-word.services-word--service.services-word--visible {
+    color: #171717;
+    opacity: 1;
+    font-weight: 500;
   }
   
   .services-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    display: flex !important;
     gap: 2rem !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding-bottom: 1rem;
+    background-color: transparent; /* Inherit section background */
+    margin: 0 -3rem; /* Extend to section edges */
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .services-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
   
   .service-item {
-    font-size: 1.1rem;
-    color: #171717;
-    font-weight: 500;
-    padding: 2rem 1.5rem;
-    background: transparent; /* White background for service items */
-    border-radius: 40px;
+    font-size: 1.8rem;
+    color: #808080; /* Darker grey text initially */
+    opacity: 0.4;
+    font-weight: 700; /* Bold */
+    font-family: 'Inter', sans-serif;
+    padding: 2rem 3rem;
+    background: transparent;
+    border-radius: 0;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for contrast */
+    transition: color 220ms ease, opacity 220ms ease;
+    box-shadow: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: fit-content;
+  }
+  
+  .service-item.service-item--visible {
+  
+    opacity: 1;
   }
   
   .service-item:hover {
-    background: #f8f8f8; /* Slightly darker on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: transparent;
+    transform: none;
+    box-shadow: none;
   }
   
   /* Journal Section */
   .journal-section {
     padding: 0;
-    background-color: #ffffff;
+    padding-top: 2rem !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: #ffffff !important;
     border-top: none;
     position: relative;
-    z-index: 2;
+    z-index: 1000 !important;
     overflow: visible; /* Allow title to extend beyond section */
+    margin-left: 0rem;
+    margin-right: 0rem;
+    display: block !important;
+    visibility: visible !important;
   }
   
   .journal-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0rem;
     position: relative;
+  }
+
+  .journal-content-wrapper {
+    padding: 2rem 0rem 0 0rem !important; /* Reduced top padding, no bottom padding */
+    margin: 0 auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .journal-title-container {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem !important;
     text-align: left;
     padding-left: 0;
   }
@@ -478,34 +643,81 @@
   }
   
   .journal-content {
-    margin-top: 2rem;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .journal-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 2rem !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.5rem !important; /* Minimal space between images */
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
   
   .journal-post {
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: transparent;
+    border-radius: 0; /* No rounded corners */
+    overflow: visible;
+    box-shadow: none;
+    border: none;
+    position: relative !important;
+    z-index: 1000 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   .journal-post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: none;
+    box-shadow: none;
   }
 
   .journal-image {
-    width: 100%;
-    height: 280px; /* Increased from 200px */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100% !important;
+    height: 400px !important; /* Fixed height instead of padding-bottom */
+    background-size: cover !important; /* Cover the container */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: relative !important;
+    overflow: hidden;
+    border-radius: 0; /* No rounded corners on image */
+    display: block !important; /* Ensure image displays */
+    visibility: visible !important;
+    opacity: 1 !important;
+    isolation: isolate;
+    background-color: #f5f5f5; /* Light grey background while loading */
+    min-height: 400px !important; /* Ensure minimum height */
+  }
+
+  /* create a layer to animate zoom out and blur - use CSS variable for background */
+  .journal-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--journal-bg-image);
+    background-size: cover !important; /* Match main element */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transform: scale(1);
+    transition: transform 400ms ease, filter 400ms ease;
+    will-change: transform, filter;
+    z-index: 1;
+    filter: blur(0);
+    pointer-events: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  .journal-image:hover::before {
+    transform: scale(0.95); /* Zoom out effect */
+    filter: blur(6px); /* Blur like portfolio */
   }
 
   .journal-text {
@@ -518,40 +730,52 @@
   
   /* Brand Statement Section */
   .brand-statement {
-    padding: 25rem 0 60rem 0; /* increased top and bottom padding for center alignment */
-    background-color: #ffffff;
+    padding: 20rem 0 8rem 0; /* reduced bottom padding */
+    background-color: #f5f5f5 !important; /* Same grey as services section */
     border-top: none;
     width: 100vw; /* full viewport width */
     margin-left: calc(50% - 50vw); /* breakout from centered parent */
     position: relative;
-    z-index: 2;
-    margin-top: calc(100vh - 30vh); /* adjusted to account for hero scroll up, no gap */
-    margin-bottom: 50vh; /* extra margin so whole section scrolls through */
+    z-index: 10 !important;
+    margin-top: 100vh !important; /* Add margin to account for fixed hero */
+    margin-bottom: 0 !important; /* Remove extra margin */
     overflow: hidden; /* contain decorative bottom bg */
     font-weight: 700 !important;
-    will-change: transform;
-    transition: transform 0.1s ease-out;
   }
 
-  /* Add subtle bottom background shape */
-  .brand-statement::after {
-    content: '';
-    position: absolute;
-    bottom: -8rem;
-    right: -25%;
-    width: 150%;
-    height: 40vh;
-    background: radial-gradient(ellipse 110% 80% at 80% 0%, #f5f5f5 0%, #f5f5f5 55%, transparent 75%);
-    pointer-events: none;
-    z-index: 1;
-  }
+  /* Removed grey background shape */
   
   .brand-statement-content {
     max-width: none; /* remove width cap for full-width layout */
     margin: 0 auto;
-    padding: 0 2rem; /* keep safe side gutters */
+    padding: 0 4rem; /* increased side padding */
     position: relative;
     z-index: 2; /* above bottom bg */
+  }
+  
+  .brand-statement-svg {
+    margin-top: 4rem;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  
+  .work-svg {
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    display: block;
+    margin-top: 10rem;
+    margin-bottom: -20% !important;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
   }
   
   .brand-statement-text {
@@ -559,13 +783,13 @@
     margin: 0;
     margin-top: 0; /* remove extra margin since padding is now on container */
     margin-bottom: 0; /* remove extra margin since padding is now on container */
-    padding: 0 10px; /* add 10px padding left and right */
+    padding: 0 4rem; /* increased left and right padding */
     /* display-1 inspired typography */
-    font-weight: 700 !important;
-    line-height: 1.05;
-    letter-spacing: -0.15rem;
+    font-weight: 300 !important;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     text-indent: 0%;
-    font-size: 3.7rem; /* desktop default */
+    font-size: 2.8rem; /* reduced font size */
     text-align: left; /* start from left as requested */
   }
 
@@ -575,12 +799,12 @@
     white-space: nowrap;
   }
 
-  /* Character-by-character reveal (fast) */
+  /* Character-by-character reveal (fast animation) */
   .brand-char {
     color: #bdbdbd;
     opacity: 0.3;
     display: inline-block;
-    transition: color 220ms ease, opacity 220ms ease;
+    transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 530; /* uniform weight per request */
   }
   .brand-char.brand-char--visible {
@@ -590,15 +814,288 @@
   }
   
   /* Responsive Design */
-  @media (max-width: 768px) {
-    .hero-content {
-      max-width: 70%;
-      padding: 0 1.5rem;
+  
+  /* Large Desktop / Ultra-wide (1920px and above) */
+  @media (min-width: 1920px) {
+    .hero-section {
+      padding-bottom: 3rem !important;
+      padding-top: 0 !important;
     }
     
     .hero-heading {
-      font-size: calc(2.5rem + 3px);
-      font-weight: 500 !important;
+      font-size: 4.3rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
+    }
+    
+    .hero-content {
+      width: 78%;
+      max-width: 78%;
+      margin-bottom: 3rem;
+      padding-left: 5.5rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.015em !important;
+      word-spacing: 0.12em !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      max-width: 1600px;
+    }
+    
+    .brand-statement-text {
+      font-size: 3rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 4rem;
+    }
+    
+    .view-all-button {
+      font-size: 22rem;
+    }
+  }
+  
+  /* Large Desktop / 4K (1440px - 1919px) - MacBook Pro 16", Large Windows Laptops */
+  @media (min-width: 1440px) and (max-width: 1919px) {
+    .hero-section {
+      padding-bottom: 3rem !important;
+      padding-top: 0 !important;
+    }
+    
+    .hero-heading {
+      font-size: 3.8rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
+    }
+    
+    .hero-content {
+      width: 72%;
+      max-width: 72%;
+      margin-bottom: 3rem;
+      padding-left: 5rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.015em !important;
+      word-spacing: 0.12em !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      max-width: 1400px;
+    }
+    
+    .brand-statement-text {
+      font-size: 2.8rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 3.5rem;
+    }
+    
+    .view-all-button {
+      font-size: 18rem;
+    }
+  }
+  
+  /* Medium Desktop / Standard Laptops (1280px - 1439px) - MacBook Air, Standard Windows Laptops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    .hero-section {
+      padding-bottom: 3rem !important;
+      padding-top: 0 !important;
+    }
+    
+    .hero-heading {
+      font-size: 3.2rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
+    }
+    
+    .hero-content {
+      width: 72%;
+      max-width: 72%;
+      margin-bottom: 3rem;
+      padding-left: 4.5rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.015em !important;
+      word-spacing: 0.12em !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      max-width: 1200px;
+    }
+    
+    .brand-statement-text {
+      font-size: 2.6rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 3rem;
+    }
+    
+    .view-all-button {
+      font-size: 16rem;
+    }
+    
+    .portfolio-split {
+      gap: 1.5rem;
+    }
+    
+    .services-content-wrapper {
+      padding: 3rem 2.5rem 3.5rem 2.5rem !important;
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+    
+    .services-heading {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #171717;
+      line-height: 1.2;
+    }
+    
+    .services-section {
+      margin-left: 3rem;
+      margin-right: 3rem;
+    }
+    
+    .journal-grid {
+      gap: 2rem !important;
+    }
+  }
+  
+  /* Tablets (769px - 1023px) */
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .hero-section {
+      padding-bottom: 2.5rem !important;
+      padding-top: 0 !important;
+    }
+    
+    .hero-heading {
+      font-size: 2.6rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
+    }
+    
+    .hero-content {
+      width: 78%;
+      max-width: 78%;
+      margin-bottom: 2.5rem;
+      padding-left: 3.5rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.012em !important;
+      word-spacing: 0.1em !important;
+    }
+  }
+  
+  /* Small Desktop / Small Laptops (1024px - 1279px) - Smaller Windows Laptops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .hero-section {
+      padding-bottom: 3rem !important;
+      padding-top: 0 !important;
+    }
+    
+    .hero-heading {
+      font-size: 3rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
+    }
+    
+    .hero-content {
+      width: 68%;
+      max-width: 68%;
+      margin-bottom: 3rem;
+      padding-left: 4rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.015em !important;
+      word-spacing: 0.12em !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      max-width: 1000px;
+      padding: 0 1rem;
+    }
+    
+    .brand-statement-text {
+      font-size: 2.4rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 2.5rem;
+    }
+    
+    .view-all-button {
+      font-size: 14rem;
+      margin-top:10rem;
+    }
+    
+    .portfolio-split {
+      gap: 1.5rem;
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+    
+    .services-content-wrapper {
+      padding: 3rem 2rem 3rem 2rem !important;
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+    
+    .services-heading {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #171717;
+      line-height: 1.2;
+    }
+    
+    .services-section {
+      margin-left: 3rem;
+      margin-right: 3rem;
+    }
+    
+    .journal-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      padding-bottom: 2rem !important;
+      padding-top: 0 !important;
+    }
+    
+    .hero-content {
+      max-width: 92%;
+      width: 92%;
+      padding: 0 1.5rem;
+      padding-left: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-heading {
+      letter-spacing: 0.008em !important;
+      word-spacing: 0.08em !important;
+    }
+    
+    .hero-heading {
+      font-size: 2.4rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
     }
     
     .hero-subheading {
@@ -626,17 +1123,30 @@
     }
     
     .services-content-wrapper {
-      padding: 3rem 2rem; /* Reduced padding for tablet */
+      padding: 0 2rem 3rem 2rem !important; /* Reduced padding for tablet, no top padding */
+      padding-top: 0 !important;
+      margin-top: 0 !important;
     }
     
     .services-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+      display: flex !important;
       gap: 1.5rem !important;
+      margin-top: 10rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
     
     .services-heading {
-      font-size: 2rem; /* Reduced font size for tablet */
+      font-size: 1.7rem; /* Reduced font size for tablet */
+      font-weight: 500;
+      color: #171717;
+      line-height: 1.2;
       margin-bottom: 2rem;
+    }
+    
+    .services-section {
+      margin-left: 2rem;
+      margin-right: 2rem;
     }
     
     .service-item {
@@ -702,26 +1212,47 @@
     }
     
     .brand-statement-text {
-      font-size: 1.25rem;
+      font-size: 2rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 2rem;
     }
     /* Brand statement responsive */
     .brand-statement-text {
-      font-size: 3rem;
+      font-size: 2rem;
+      font-weight: 300 !important;
       text-indent: 0%;
-      letter-spacing: -0.08rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding: 0 2rem;
       line-height: 1.15;
       text-align: left;
     }
   }
   
   @media (max-width: 480px) {
+    .hero-section {
+      padding-bottom: 1.5rem !important;
+      padding-top: 0 !important;
+    }
+    
     .hero-content {
       max-width: 100%;
+      width: 100%;
       padding: 0 1rem;
+      padding-left: 2.5rem;
+      margin-bottom: 1.5rem;
     }
     
     .hero-heading {
-      font-size: calc(2rem + 3px);
+      letter-spacing: 0.008em !important;
+      word-spacing: 0.08em !important;
+    }
+    
+    .hero-heading {
+      font-size: 2.1rem !important;
+      font-weight: 400 !important;
+      line-height: 1.4 !important;
     }
     
     .hero-curve {
@@ -780,17 +1311,30 @@
     }
     
     .services-content-wrapper {
-      padding: 2rem 1.5rem; /* Further reduced padding for mobile */
+      padding: 0 1.5rem 2rem 1.5rem !important; /* Further reduced padding for mobile, no top padding */
+      padding-top: 0 !important;
+      margin-top: 0 !important;
     }
     
     .services-grid {
-      grid-template-columns: 1fr !important;
+      display: flex !important;
       gap: 1rem !important;
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
     
     .services-heading {
-      font-size: 1.5rem; /* Smaller font size for mobile */
+      font-size: 1.4rem; /* Smaller font size for mobile */
+      font-weight: 500;
+      color: #171717;
+      line-height: 1.2;
       margin-bottom: 1.5rem;
+    }
+    
+    .services-section {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
     }
     
     .service-item {
@@ -805,21 +1349,28 @@
     }
     
     .brand-statement {
-      padding: 2rem 0;
+      padding: 3rem 0 12rem 0; /* top padding adjusted for mobile */
+      margin-bottom: 8vh; /* reduced margin on mobile */
     }
     
     .brand-statement-content {
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
     
     .brand-statement-text {
-      font-size: 1.1rem;
+      font-size: 1.6rem;
+      font-weight: 300 !important;
+      line-height: 1.2;
+      padding: 0 1.5rem;
     }
     /* Brand statement responsive */
     .brand-statement-text {
-      font-size: 2rem;
+      font-size: 1.6rem;
+      font-weight: 300 !important;
       text-indent: 0%;
-      letter-spacing: -0.05rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding: 0 1.5rem;
       line-height: 1.2;
       text-align: left;
     }

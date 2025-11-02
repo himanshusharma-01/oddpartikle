@@ -13,13 +13,47 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+  
+  html {
+    background-color: #ffffff;
+  }
+  
+  body {
+    background: #ffffff;
   }
 }
 
 body {
-  background: var(--background);
+  background: #ffffff;
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+html {
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  will-change: scroll-position;
 }
