@@ -143,13 +143,20 @@ export default function Homepage() {
       const workSvg = workSvgRef.current;
       if (!workSvg) return;
       
+      const scrollY = window.scrollY;
       const rect = workSvg.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate parallax offset based on scroll position
-      // SVG moves slower than scroll (30% speed)
-      const scrollProgress = (viewportHeight - rect.top) / viewportHeight;
-      const parallaxOffset = scrollProgress * 50; // Adjust multiplier for intensity
+      // Get the element's offset from the top of the document
+      const elementTop = scrollY + rect.top;
+      
+      // Calculate when the element enters the viewport
+      const viewportCenter = scrollY + viewportHeight * 0.5;
+      const distanceFromCenter = viewportCenter - elementTop;
+      
+      // Parallax speed (0.3 means SVG moves at 30% of scroll speed - creates depth)
+      const parallaxSpeed = 0.3;
+      const parallaxOffset = distanceFromCenter * parallaxSpeed;
       
       workSvg.style.transform = `translateY(${parallaxOffset}px)`;
     };

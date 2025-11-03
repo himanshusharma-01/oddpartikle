@@ -774,8 +774,8 @@ body {
     display: block;
     margin-top: 10rem;
     margin-bottom: -20% !important;
-    transition: transform 0.1s ease-out;
     will-change: transform;
+    transform: translateZ(0); /* Enable hardware acceleration */
   }
   
   .brand-statement-text {
