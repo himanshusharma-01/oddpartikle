@@ -2,6 +2,7 @@
 
 import './homepage.css';
 import { useEffect, useRef, ReactNode, useMemo } from 'react';
+import Image from 'next/image';
 
 export default function Homepage() {
   const brandStatementRef = useRef<HTMLElement>(null);
@@ -48,15 +49,13 @@ export default function Homepage() {
     'The 4.6'
   ];
 
-  // Use the 7 images from public/portfolio in specific order: TARC, GD-Goenka, INFOX, then others
+  // Use the 5 images from public/portfolio in specific order: TARC, GD-Goenka, INFOX, then others
   const portfolioImages = [
-    '/portfolio/Project-Cover-TARC.jpg',      // First: TARC
-    '/portfolio/Project-Cover-GD-Goenka.jpg', // Second: GD-Goenka
-    '/portfolio/Project-Cover-INFOX.jpg',      // Third: INFOX
-    '/portfolio/Project-Cover-ANF.jpg',
-    '/portfolio/Project-Cover-Cactus.jpg',
-    '/portfolio/Project-Cover-Cyberthum.jpg',
-    '/portfolio/Project-Cover-The54.jpg',
+    '/portfolio/Project Cover 800x600-01.jpg',      // First: TARC
+    '/portfolio/Project Cover 800x600-02.jpg', // Second: GD-Goenka
+    '/portfolio/Project Cover 800x600-03.jpg',      // Third: INFOX
+    '/portfolio/Project Cover 800x600-04.jpg',
+    '/portfolio/Project Cover 800x600-05.jpg',
   ];
 
   // Match projects to image order: TARC, GD-Goenka, INFOX, then others
@@ -65,9 +64,7 @@ export default function Homepage() {
     'GD Goenka',
     'INFO X',
     'ANF',
-    'Cactus',
-    'Cyberthum',
-    'The54'
+    'Cactus'
   ], []);
 
   const services = [
@@ -85,12 +82,6 @@ export default function Homepage() {
     'Mobile App Design'
   ];
 
-  const journalPosts = [
-    { text: 'What does Oddpartikle mean?', image: '/journal.avif' },
-    { text: 'Hidden message in LIC', image: '/journal.avif' },
-    { text: 'A lesson from an Old Wall', image: '/journal.avif' },
-    { text: 'New developments start?', image: '/journal.avif' }
-  ];
 
   const brandStatement =
     'We design brands that shape environments and influence culture. Our partners are forward thinkers who view design as an engine for change, people who build futures and reshape spaces.';
@@ -200,11 +191,6 @@ export default function Homepage() {
         viewAllWrapper.style.transform = `translateY(0)`;
       }
       
-      // Journal posts - NO parallax effect, stays in normal flow
-      const journalPosts = document.querySelectorAll<HTMLElement>('.journal-post');
-      journalPosts.forEach((post) => {
-        post.style.transform = `translateY(0)`;
-      });
     };
     
     let rafId: number | null = null;
@@ -390,30 +376,31 @@ export default function Homepage() {
 
             {/* Second tile: first image with caption */}
             <div className="portfolio-tile-wrapper">
-              <div
-                className="portfolio-tile image-tile"
-                style={{
-                  backgroundImage: `url(${portfolioImages[0]})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              ></div>
+              <div className="portfolio-tile image-tile">
+                <Image
+                  src={portfolioImages[0]}
+                  alt={displayedProjects[0]}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 50vw, 50vw"
+                  priority={true}
+                />
+              </div>
               <TileCaption text={displayedProjects[0]} />
             </div>
 
             {/* Remaining images fill the grid in rows of two */}
             {portfolioImages.slice(1).map((img: string, i: number) => (
               <div key={`tile-${i}`} className="portfolio-tile-wrapper">
-                <div
-                  className="portfolio-tile image-tile"
-                  style={{
-                    backgroundImage: `url(${img})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  }}
-                ></div>
+                <div className="portfolio-tile image-tile">
+                  <Image
+                    src={img}
+                    alt={displayedProjects[i + 1] || 'Portfolio project'}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 50vw, 50vw"
+                  />
+                </div>
                 <TileCaption text={displayedProjects[i + 1] || ''} />
               </div>
             ))}
@@ -465,32 +452,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Journal Section */}
-      <section className="journal-section">
-        <div className="journal-container">
-          <div className="journal-content-wrapper">
-            <div className="journal-content">
-              <div className="journal-title-container">
-                <JournalTitle text="Journal" />
-              </div>
-              <div className="journal-grid">
-                {journalPosts.map((post, index) => (
-                  <div key={index} className="journal-post">
-                    <div 
-                      className="journal-image" 
-                      style={{ 
-                        backgroundImage: `url(${post.image})`,
-                        ['--journal-bg-image' as any]: `url(${post.image})`
-                      }}
-                    ></div>
-                    <div className="journal-text">{post.text}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Removed placeholder homepage footer section to avoid blank space before global Footer */}
     </div>
@@ -590,99 +551,6 @@ function PortfolioTitle({ text }: { text: string }) {
           <span key={`w-${wIndex}`} className="portfolio-wordwrap">
             {Array.from(word).map((ch, cIndex) => (
               <span key={`c-${wIndex}-${cIndex}`} className="portfolio-char">
-                {ch}
-              </span>
-            ))}
-          </span>
-        )) as ReactNode[]
-      ).reduce<ReactNode[]>((acc, el, idx) => (idx === 0 ? [el] : [...acc, ' ', el]), [] as ReactNode[])}
-    </p>
-  );
-}
-
-function JournalTitle({ text }: { text: string }) {
-  const containerRef = useRef<HTMLParagraphElement | null>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const chars = Array.from(container.querySelectorAll<HTMLSpanElement>('.journal-char'));
-    const totalChars = chars.length;
-
-    const computeProgress = (): number => {
-      const rect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const enterPoint = viewportHeight * 0.8;
-      const exitPoint = viewportHeight * 0.2;
-      const distance = rect.height + (enterPoint - exitPoint);
-      const traveled = Math.min(Math.max(enterPoint - rect.top, 0), Math.max(distance, 1));
-      return Math.min(Math.max(traveled / Math.max(distance, 1), 0), 1);
-    };
-
-    const updateCharsByProgress = (progress: number) => {
-      const visibleCharsCount = Math.round(progress * totalChars);
-      chars.forEach((char, index) => {
-        const shouldBeVisible = index < visibleCharsCount;
-        char.classList.toggle('journal-char--visible', shouldBeVisible);
-      });
-    };
-
-    const handleScroll = () => {
-      const progress = computeProgress();
-      updateCharsByProgress(progress);
-    };
-
-    let ticking = false;
-    const throttledScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            chars.forEach((el) => el.classList.remove('journal-char--visible'));
-            handleScroll();
-          }
-        });
-      },
-      { root: null, threshold: 0.01 }
-    );
-
-    window.addEventListener('scroll', throttledScroll);
-    observer.observe(container);
-    
-    const handleResize = () => {
-      chars.forEach((el) => el.classList.remove('journal-char--visible'));
-      handleScroll();
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('scroll', throttledScroll);
-      observer.disconnect();
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [text]);
-
-  const words = text.split(' ');
-
-  return (
-    <p ref={containerRef} className="journal-title-text">
-      {(
-        words
-        .map((word, wIndex) => (
-          <span key={`w-${wIndex}`} className="journal-wordwrap">
-            {Array.from(word).map((ch, cIndex) => (
-              <span key={`c-${wIndex}-${cIndex}`} className="journal-char">
                 {ch}
               </span>
             ))}

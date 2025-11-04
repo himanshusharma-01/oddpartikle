@@ -274,20 +274,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer-copyright">
-          <p className="footer-copyright-text">
-            {'©Oddpartikle'.split('').map((char, index) => (
-              <span
-                key={index}
-                className="footer-copyright-char-wrapper"
-                style={{ display: 'inline-block', overflow: 'hidden', height: '1em', ['--delay' as any]: `${index * 0.02}s` }}
-              >
-                <span className="footer-copyright-char">{char === ' ' ? '\u00A0' : char}</span>
-                <span className="footer-copyright-char">{char === ' ' ? '\u00A0' : char}</span>
-              </span>
-            ))}
-          </p>
-        </div>
       </div>
     </footer>
   );

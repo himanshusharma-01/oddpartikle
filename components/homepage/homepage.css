@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
 
 /* Smooth scrolling */
 html {
@@ -42,7 +43,7 @@ body {
     overflow: hidden !important;
     margin: 0 !important;
     padding: 0 !important;
-    padding-bottom: 3rem !important;
+    padding-bottom: 3vh !important;
     padding-top: 0 !important;
     z-index: 1 !important;
     transition: background-color 0.3s ease-in-out;
@@ -74,40 +75,40 @@ body {
   
   .golden-corner {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 25vw;
+    height: 25vw;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(5vw);
     opacity: 0.4;
   }
   
   .golden-corner.top-left {
-    top: -200px;
-    left: -200px;
+    top: -12.5vw;
+    left: -12.5vw;
     background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, rgba(212,175,55,0) 70%);
   }
   
   .golden-corner.top-right {
-    top: -200px;
-    right: -200px;
+    top: -12.5vw;
+    right: -12.5vw;
     background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0) 70%);
   }
   
   .golden-corner.bottom-left {
-    bottom: -200px;
-    left: -200px;
+    bottom: -12.5vw;
+    left: -12.5vw;
     background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%);
   }
   
   .curve-bottom-right {
     position: absolute;
-    bottom: -300px;
-    right: -300px;
-    width: 600px;
-    height: 600px;
+    bottom: -18.75vw;
+    right: -18.75vw;
+    width: 37.5vw;
+    height: 37.5vw;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 60%);
-    filter: blur(60px);
+    filter: blur(3.75vw);
   }
 
   .hero-curve {
@@ -128,25 +129,25 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     margin-left: 0;
     margin-right: auto;
     text-align: left;
     padding: 0;
-    margin-bottom: 3rem;
-    padding-left: 5rem;
-    padding-right: 0;
+    margin-bottom: 3vh;
+    padding-left: 4%;
+    padding-right: 4%;
     border: none;
     outline: none;
     background: transparent;
   }
   
   .hero-heading {
-    font-size: 3.8rem !important;
-    font-weight: 400 !important;
-    line-height: 1.4 !important;
-    letter-spacing: 0.015em !important;
+    font-size: clamp(200%, 6vw, 380%) !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.005em !important;
     word-spacing: 0.12em !important;
     color: #171717 !important;
     margin: 0 !important;
@@ -165,10 +166,10 @@ body {
   }
 
   .hero-ampersand {
-    font-family: serif, Georgia, 'Times New Roman', serif !important;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
     letter-spacing: normal !important;
     font-style: normal !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     line-height: 1 !important;
     font-size: 1.2em !important;
     display: inline-block;
@@ -177,11 +178,11 @@ body {
   }
   
   .hero-subheading {
-    font-size: 1.25rem;
+    font-size: clamp(90%, 2vw, 125%);
     line-height: 1.6;
     color: #6b7280;
     font-weight: 400;
-    max-width: 600px;
+    max-width: 37.5vw;
     margin: 0 auto;
   }
   
@@ -191,9 +192,9 @@ body {
   /* Portfolio Section */
   .portfolio-section {
     padding: 0;
-    padding-top: 4rem !important;
+    padding-top: 4vh !important;
     margin-top: 0 !important;
-    padding-bottom: 4rem !important;
+    padding-bottom: 4vh !important;
     margin-bottom: 0 !important;
     background-color: #ffffff !important;
     position: relative;
@@ -202,9 +203,9 @@ body {
   }
 
   .portfolio-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem 0.5rem 4rem 0.5rem; /* top padding to connect with brand statement, bottom padding for View All */
+    max-width: 100%;
+    margin: 0;
+    padding: 2vh 4% 4vh 4%; /* top padding to connect with brand statement, bottom padding for View All */
     margin-bottom: 0;
     position: relative;
     display: flex;
@@ -219,10 +220,12 @@ body {
     margin: 0;
     font-weight: 700 !important;
     line-height: 1.05;
-    letter-spacing: -0.15rem;
-    font-size: 4.3rem;
+    letter-spacing: -15%;
+    font-size: clamp(200%, 6.8vw, 430%);
     text-align: left;
-    margin-bottom: 5rem;
+    margin-bottom: 5vh;
+    padding-left: 0; /* Padding handled by parent container */
+    padding-right: 0; /* Padding handled by parent container */
   }
 
   /* Keep characters of portfolio title together on one line */
@@ -249,17 +252,23 @@ body {
   .portfolio-split {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    gap: 2vh;
+    margin: 0;
+    padding: 0;
   }
 
   .portfolio-tile {
     position: relative;
-    aspect-ratio: 4 / 3; /* 800x600 rectangular format */
     width: 100%;
     background: transparent;
     overflow: hidden;
+    display: block;
+    z-index: 1;
+  }
+  
+  .portfolio-tile.image-tile {
+    aspect-ratio: 4 / 3; /* 800x600 rectangular format */
+    height: auto;
   }
 
   .portfolio-tile-wrapper {
@@ -274,53 +283,43 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    padding-bottom: 1.5rem;
-    padding-left: 5%;
+    padding-bottom: 1.5vh;
+    padding-left: 0; /* Padding handled by parent container */
     padding-top: 0;
   }
 
   .image-tile {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* prepare for hover zoom/blur via pseudo-element */
-    isolation: isolate;
-    transition: transform 0.1s ease-out;
-    will-change: transform;
+    position: relative;
+    overflow: hidden;
     aspect-ratio: 4 / 3; /* 800x600 rectangular format */
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    display: block;
+    isolation: isolate;
+    z-index: 1;
   }
 
-  /* create a layer to animate without affecting caption */
-  .image-tile::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: inherit;
-    background-size: inherit;
-    background-position: inherit;
-    background-repeat: inherit;
-    transform: scale(1.1);
+  /* Next.js Image component styling */
+  .image-tile img {
+    object-fit: cover;
     transition: transform 400ms ease, filter 400ms ease;
     will-change: transform, filter;
-    z-index: -1;
+    transform: scale(1.1);
     filter: blur(0);
   }
 
-  .image-tile:hover::before {
+  .image-tile:hover img {
     transform: scale(1);
     filter: blur(6px);
   }
 
   .tile-caption {
-    margin-top: 1.5rem;
+    margin-top: 0.5vh;
     margin-bottom: 0;
     padding: 0;
-    padding-left: 5%;
+    padding-left: 0; /* Padding handled by parent container */
     color: #000000;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: clamp(90%, 2vw, 125%);
     text-align: left;
     position: relative;
   }
@@ -344,26 +343,27 @@ body {
     justify-self: stretch; /* ensure same width as other cards */
  
     /* Ensure same size as other cards */
-    padding: 3rem;
-    min-height: 420px;
+    padding: 3vh;
+    min-height: 26.25%;
     position: relative;
   }
 
   /* Portfolio title positioned on left side of first card */
   .portfolio-title-left {
     position: absolute;
-    left: clamp(-12rem, -18vw, -8rem); /* keep visible within viewport */
+    left: 0; /* Align with grid item start */
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    width: 200px;
+    width: auto;
+    padding-left: 0; /* Padding handled by parent container */
   }
   
   .portfolio-item {
     background: transparent;
     border-radius: 0;
     padding: 0;
-    min-height: 420px;
+    min-height: 26.25%;
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -373,7 +373,7 @@ body {
   }
   
   .portfolio-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-0.3vh);
   }
 
   /* removed inline grid title */
@@ -382,7 +382,7 @@ body {
   .project-image { display: none; }
   
   .project-name {
-    font-size: 1.3rem;
+    font-size: clamp(90%, 2.1vw, 130%);
     font-weight: 500;
     color: #171717;
     text-align: center;
@@ -390,20 +390,21 @@ body {
   
   .view-all-button {
     display: block !important;
-    margin: 2rem 0 0 0;
+    margin: 0;
     width: 100%;
     padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
+    margin-top: 50vh !important;
     background: transparent;
     color: #171717;
-    font-size: 20.1rem;
+    font-size: clamp(800%, 20vw, 2010%);
     font-weight: 500;
     cursor: pointer;
     border: none;
     position: relative;
-    z-index: 11;
+    z-index: 1;
     text-align: left;
-    padding-left: 5%;
+    padding-left: 4%;
+    padding-right: 4%;
     line-height: 1;
     visibility: visible !important;
     opacity: 1 !important;
@@ -411,20 +412,16 @@ body {
   
   .view-all-wrapper {
     grid-column: 1 / -1;
-    margin-top: 2rem;
+    margin-top: 10vh !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     position: relative;
-    z-index: 11;
+    z-index: 1;
     transition: transform 0.1s ease-out;
     will-change: transform;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-  }
-  
-  .portfolio-split .view-all-button {
-    margin-top:25rem;
   }
   
   .view-all-char-wrapper {
@@ -458,30 +455,30 @@ body {
   /* Services Section */
   .services-section {
     padding: 0;
-    padding-top: 3rem !important;
+    padding-top: 3vh !important;
     margin-top: 0 !important;
-    padding-bottom: 1rem !important;
+    padding-bottom: 1vh !important;
     margin-bottom: 0 !important;
     background-color: #f5f5f5 !important; /* Light grey background */
     position: relative;
     z-index: 10;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 0;
+    margin-right: 0;
     border-radius: 0;
     border: none;
   }
 
   .services-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 2vh 4%;
     padding-top: 0;
     margin-top: 0;
   }
 
   .services-content-wrapper {
     background-color: transparent; /* Transparent since section has background */
-    padding: 0 3rem 4rem 3rem !important; /* Remove top padding to stack directly below View All */
+    padding: 0 0 4vh 0 !important; /* Remove left/right padding so heading starts further left */
     margin: 0 auto;
     margin-top: 0 !important;
     padding-top: 0 !important;
@@ -490,15 +487,17 @@ body {
   }
   
   .services-heading {
-    font-size: 2.5rem;
+    font-size: clamp(150%, 4vw, 250%);
     line-height: 1.2;
     color: #171717;
     font-weight: 500;
-    margin: 2rem 0 3rem 0 !important;
+    margin: 2vh 0 3vh 0 !important;
     margin-top: 0 !important;
     padding-top: 0 !important;
     text-align: left;
     letter-spacing: -0.01em;
+    padding-left: 4%; /* Match navbar margins */
+    padding-right: 4%; /* Match navbar margins */
   }
 
   /* Word-by-word reveal for services heading */
@@ -525,20 +524,42 @@ body {
   
   .services-grid {
     display: flex !important;
-    gap: 2rem !important;
+    gap: 2vh !important;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
-    padding-bottom: 1rem;
+    padding-bottom: 1vh;
     background-color: transparent; /* Inherit section background */
-    margin: 0 -3rem; /* Extend to section edges */
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    margin: 0;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    position: relative; /* For fade overlays */
+  }
+  
+  .services-grid::before,
+  .services-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .services-grid::before {
+    left: 0;
+    background: linear-gradient(90deg, #f5f5f5 0%, rgba(245,245,245,0.85) 50%, rgba(245,245,245,0) 100%);
+  }
+  
+  .services-grid::after {
+    right: 0;
+    background: linear-gradient(270deg, #f5f5f5 0%, rgba(245,245,245,0.85) 50%, rgba(245,245,245,0) 100%);
   }
   
   .services-grid::-webkit-scrollbar {
@@ -546,12 +567,12 @@ body {
   }
   
   .service-item {
-    font-size: 1.8rem;
+    font-size: clamp(110%, 3.5vw, 220%);
     color: #808080; /* Darker grey text initially */
     opacity: 0.4;
-    font-weight: 700; /* Bold */
+    font-weight: 600; /* Semi-bold */
     font-family: 'Inter', sans-serif;
-    padding: 2rem 3rem;
+    padding: 2vh 2%;
     background: transparent;
     border-radius: 0;
     text-align: center;
@@ -576,7 +597,7 @@ body {
   /* Journal Section */
   .journal-section {
     padding: 0;
-    padding-top: 2rem !important;
+    padding-top: 2vh !important;
     margin-top: 0 !important;
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
@@ -585,21 +606,21 @@ body {
     position: relative;
     z-index: 1000 !important;
     overflow: visible; /* Allow title to extend beyond section */
-    margin-left: 0rem;
-    margin-right: 0rem;
+    margin-left: 0;
+    margin-right: 0;
     display: block !important;
     visibility: visible !important;
   }
   
   .journal-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 4%;
     position: relative;
   }
 
   .journal-content-wrapper {
-    padding: 2rem 0rem 0 0rem !important; /* Reduced top padding, no bottom padding */
+    padding: 2vh 0 0 0 !important; /* Reduced top padding, no bottom padding */
     margin: 0 auto;
     margin-bottom: 0;
     padding-bottom: 0;
@@ -607,9 +628,10 @@ body {
 
   .journal-title-container {
     position: relative;
-    margin-bottom: 1rem !important;
+    margin-bottom: 1vh !important;
     text-align: left;
-    padding-left: 0;
+    padding-left: 4%; /* Match navbar margins */
+    padding-right: 4%; /* Match navbar margins */
   }
 
   .journal-title-text {
@@ -617,8 +639,8 @@ body {
     margin: 0;
     font-weight: 700 !important;
     line-height: 1.05;
-    letter-spacing: -0.15rem;
-    font-size: 4.3rem;
+    letter-spacing: -15%;
+    font-size: clamp(200%, 6.8vw, 430%);
     text-align: left;
   }
 
@@ -652,7 +674,7 @@ body {
   .journal-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 0.5rem !important; /* Minimal space between images */
+    gap: 0.8vh !important; /* Minimal space between images */
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -677,7 +699,7 @@ body {
 
   .journal-image {
     width: 100% !important;
-    height: 400px !important; /* Fixed height instead of padding-bottom */
+    height: 25% !important; /* Fixed height instead of padding-bottom */
     background-size: cover !important; /* Cover the container */
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -689,7 +711,7 @@ body {
     opacity: 1 !important;
     isolation: isolate;
     background-color: #f5f5f5; /* Light grey background while loading */
-    min-height: 400px !important; /* Ensure minimum height */
+    min-height: 25% !important; /* Ensure minimum height */
   }
 
   /* create a layer to animate zoom out and blur - use CSS variable for background */
@@ -721,8 +743,8 @@ body {
   }
 
   .journal-text {
-    padding: 1.5rem;
-    font-size: 1.1rem;
+    padding: 1.5vh;
+    font-size: clamp(90%, 1.8vw, 110%);
     color: #171717;
     font-weight: 500;
     text-align: center;
@@ -730,7 +752,7 @@ body {
   
   /* Brand Statement Section */
   .brand-statement {
-    padding: 20rem 0 8rem 0; /* reduced bottom padding */
+    padding: 20vh 0 8vh 0; /* reduced bottom padding */
     background-color: #f5f5f5 !important; /* Same grey as services section */
     border-top: none;
     width: 100vw; /* full viewport width */
@@ -747,32 +769,32 @@ body {
   
   .brand-statement-content {
     max-width: none; /* remove width cap for full-width layout */
-    margin: 0 auto;
-    padding: 0 4rem; /* increased side padding */
+    margin: 0;
+    padding: 0 4%; /* match navbar margins */
     position: relative;
     z-index: 2; /* above bottom bg */
   }
   
   .brand-statement-svg {
-    margin-top: 4rem;
+    margin-top: 4vh;
     margin-bottom: 0 !important;
-    padding: 0 !important;
+    padding: 0 4% !important; /* Match navbar margins */
     position: relative;
     z-index: 2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
   
   .work-svg {
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
-    margin-top: 10rem;
+    margin-top: 10vh;
     margin-bottom: -20% !important;
     will-change: transform;
     transform: translateZ(0); /* Enable hardware acceleration */
@@ -783,14 +805,15 @@ body {
     margin: 0;
     margin-top: 0; /* remove extra margin since padding is now on container */
     margin-bottom: 0; /* remove extra margin since padding is now on container */
-    padding: 0 4rem; /* increased left and right padding */
+    padding: 0; /* padding handled by parent container */
     /* display-1 inspired typography */
     font-weight: 300 !important;
     line-height: 1.2;
     letter-spacing: -0.02em;
     text-indent: 0%;
-    font-size: 2.8rem; /* reduced font size */
+    font-size: clamp(150%, 4.5vw, 280%); /* reduced font size */
     text-align: left; /* start from left as requested */
+    max-width: 100%; /* Ensure text doesn't overflow container */
   }
 
   /* Keep characters of a word together on one line */
@@ -815,565 +838,229 @@ body {
   
   /* Responsive Design */
   
-  /* Large Desktop / Ultra-wide (1920px and above) */
-  @media (min-width: 1920px) {
+  /* Mobile (max-width: 767px) */
+  @media (max-width: 767px) {
     .hero-section {
-      padding-bottom: 3rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-heading {
-      font-size: 4.3rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-content {
-      width: 78%;
-      max-width: 78%;
-      margin-bottom: 3rem;
-      padding-left: 5.5rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.015em !important;
-      word-spacing: 0.12em !important;
-    }
-    
-    .portfolio-container,
-    .services-container,
-    .journal-container {
-      max-width: 1600px;
-    }
-    
-    .brand-statement-text {
-      font-size: 3rem;
-      font-weight: 300 !important;
-      line-height: 1.2;
-      padding: 0 4rem;
-    }
-    
-    .view-all-button {
-      font-size: 22rem;
-    }
-  }
-  
-  /* Large Desktop / 4K (1440px - 1919px) - MacBook Pro 16", Large Windows Laptops */
-  @media (min-width: 1440px) and (max-width: 1919px) {
-    .hero-section {
-      padding-bottom: 3rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-heading {
-      font-size: 3.8rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-content {
-      width: 72%;
-      max-width: 72%;
-      margin-bottom: 3rem;
-      padding-left: 5rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.015em !important;
-      word-spacing: 0.12em !important;
-    }
-    
-    .portfolio-container,
-    .services-container,
-    .journal-container {
-      max-width: 1400px;
-    }
-    
-    .brand-statement-text {
-      font-size: 2.8rem;
-      font-weight: 300 !important;
-      line-height: 1.2;
-      padding: 0 3.5rem;
-    }
-    
-    .view-all-button {
-      font-size: 18rem;
-    }
-  }
-  
-  /* Medium Desktop / Standard Laptops (1280px - 1439px) - MacBook Air, Standard Windows Laptops */
-  @media (min-width: 1280px) and (max-width: 1439px) {
-    .hero-section {
-      padding-bottom: 3rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-heading {
-      font-size: 3.2rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-content {
-      width: 72%;
-      max-width: 72%;
-      margin-bottom: 3rem;
-      padding-left: 4.5rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.015em !important;
-      word-spacing: 0.12em !important;
-    }
-    
-    .portfolio-container,
-    .services-container,
-    .journal-container {
-      max-width: 1200px;
-    }
-    
-    .brand-statement-text {
-      font-size: 2.6rem;
-      font-weight: 300 !important;
-      line-height: 1.2;
-      padding: 0 3rem;
-    }
-    
-    .view-all-button {
-      font-size: 16rem;
-    }
-    
-    .portfolio-split {
-      gap: 1.5rem;
-    }
-    
-    .services-content-wrapper {
-      padding: 3rem 2.5rem 3.5rem 2.5rem !important;
-      padding-top: 0 !important;
-      margin-top: 0 !important;
-    }
-    
-    .services-heading {
-      font-size: 2.2rem;
-      font-weight: 500;
-      color: #171717;
-      line-height: 1.2;
-    }
-    
-    .services-section {
-      margin-left: 3rem;
-      margin-right: 3rem;
-    }
-    
-    .journal-grid {
-      gap: 2rem !important;
-    }
-  }
-  
-  /* Tablets (769px - 1023px) */
-  @media (min-width: 769px) and (max-width: 1023px) {
-    .hero-section {
-      padding-bottom: 2.5rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-heading {
-      font-size: 2.6rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-content {
-      width: 78%;
-      max-width: 78%;
-      margin-bottom: 2.5rem;
-      padding-left: 3.5rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.012em !important;
-      word-spacing: 0.1em !important;
-    }
-  }
-  
-  /* Small Desktop / Small Laptops (1024px - 1279px) - Smaller Windows Laptops */
-  @media (min-width: 1024px) and (max-width: 1279px) {
-    .hero-section {
-      padding-bottom: 3rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-heading {
-      font-size: 3rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-content {
-      width: 68%;
-      max-width: 68%;
-      margin-bottom: 3rem;
-      padding-left: 4rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.015em !important;
-      word-spacing: 0.12em !important;
-    }
-    
-    .portfolio-container,
-    .services-container,
-    .journal-container {
-      max-width: 1000px;
-      padding: 0 1rem;
-    }
-    
-    .brand-statement-text {
-      font-size: 2.4rem;
-      font-weight: 300 !important;
-      line-height: 1.2;
-      padding: 0 2.5rem;
-    }
-    
-    .view-all-button {
-      font-size: 14rem;
-      margin-top:10rem;
-    }
-    
-    .portfolio-split {
-      gap: 1.5rem;
-    }
-    
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 1.5rem !important;
-    }
-    
-    .services-content-wrapper {
-      padding: 3rem 2rem 3rem 2rem !important;
-      padding-top: 0 !important;
-      margin-top: 0 !important;
-    }
-    
-    .services-heading {
-      font-size: 2rem;
-      font-weight: 500;
-      color: #171717;
-      line-height: 1.2;
-    }
-    
-    .services-section {
-      margin-left: 3rem;
-      margin-right: 3rem;
-    }
-    
-    .journal-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 1.5rem !important;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .hero-section {
-      padding-bottom: 2rem !important;
-      padding-top: 0 !important;
-    }
-    
-    .hero-content {
-      max-width: 92%;
-      width: 92%;
-      padding: 0 1.5rem;
-      padding-left: 3rem;
-      margin-bottom: 2rem;
-    }
-    
-    .hero-heading {
-      letter-spacing: 0.008em !important;
-      word-spacing: 0.08em !important;
-    }
-    
-    .hero-heading {
-      font-size: 2.4rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
-    }
-    
-    .hero-subheading {
-      font-size: 1.1rem;
-    }
-    
-    .golden-corner {
-      width: 250px;
-      height: 250px;
-      filter: blur(50px);
-    }
-    
-    .curve-bottom-right {
-      width: 400px;
-      height: 400px;
-      bottom: -200px;
-      right: -200px;
-    }
-    
-    .hero-curve {
-      top: 40%;
-      right: -30%;
-      width: 70%;
-      height: 60%;
-    }
-    
-    .services-content-wrapper {
-      padding: 0 2rem 3rem 2rem !important; /* Reduced padding for tablet, no top padding */
-      padding-top: 0 !important;
-      margin-top: 0 !important;
-    }
-    
-    .services-grid {
-      display: flex !important;
-      gap: 1.5rem !important;
-      margin-top: 10rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-    
-    .services-heading {
-      font-size: 1.7rem; /* Reduced font size for tablet */
-      font-weight: 500;
-      color: #171717;
-      line-height: 1.2;
-      margin-bottom: 2rem;
-    }
-    
-    .services-section {
-      margin-left: 2rem;
-      margin-right: 2rem;
-    }
-    
-    .service-item {
-      padding: 1.5rem 1rem;
-      font-size: 1rem;
-    }
-    
-    .portfolio-title-text {
-      font-size: 3rem;
-    }
-    
-    .portfolio-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-    
-    .portfolio-item-right-only {
-      grid-column: 2;
-      justify-self: stretch; /* ensure same width as other cards */
-      padding: 2rem;
-      min-height: 360px;
-      position: relative;
-    }
-
-    .portfolio-title-left {
-      left: -6rem; /* tighter on small screens to avoid clipping */
-      width: 150px;
-    }
-    
-    .portfolio-item { padding: 0; min-height: 360px; }
-    .portfolio-split { gap: 1rem; }
-    
-    .project-image { height: 200px; }
-    
-    .journal-title-text {
-      font-size: 3rem;
-    }
-    
-    .journal-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 1.5rem !important;
-    }
-    
-    .journal-post {
-      padding: 0;
-    }
-
-    .journal-image {
-      height: 200px; /* Increased from 150px */
-    }
-
-    .journal-text {
-      padding: 1rem;
-      font-size: 1rem;
-    }
-    
-    .journal-title-container {
-      margin-bottom: 2rem;
-    }
-    
-    .brand-statement {
-      padding: 3rem 0;
-    }
-    
-    .brand-statement-text {
-      font-size: 2rem;
-      font-weight: 300 !important;
-      line-height: 1.2;
-      padding: 0 2rem;
-    }
-    /* Brand statement responsive */
-    .brand-statement-text {
-      font-size: 2rem;
-      font-weight: 300 !important;
-      text-indent: 0%;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      padding: 0 2rem;
-      line-height: 1.15;
-      text-align: left;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .hero-section {
-      padding-bottom: 1.5rem !important;
+      padding-bottom: 2vh !important;
       padding-top: 0 !important;
     }
     
     .hero-content {
       max-width: 100%;
       width: 100%;
-      padding: 0 1rem;
-      padding-left: 2.5rem;
-      margin-bottom: 1.5rem;
+      padding-left: 4%;
+      padding-right: 4%;
+      margin-bottom: 2vh;
     }
     
     .hero-heading {
+      font-size: clamp(180%, 5vw, 240%) !important;
+      font-weight: 600 !important;
+      line-height: 1.25 !important;
       letter-spacing: 0.008em !important;
       word-spacing: 0.08em !important;
     }
     
-    .hero-heading {
-      font-size: 2.1rem !important;
-      font-weight: 400 !important;
-      line-height: 1.4 !important;
+    .hero-subheading {
+      font-size: clamp(90%, 2.2vw, 110%);
     }
     
-    .hero-curve {
-      top: 50%;
-      right: -40%;
-      width: 60%;
-      height: 50%;
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      padding-left: 4%;
+      padding-right: 4%;
     }
     
-    .portfolio-title-text {
-      font-size: 2rem;
-    }
-    
-    .portfolio-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    
-    .portfolio-item-right-only {
-      grid-column: 1;
-      justify-self: stretch;
-      padding: 2rem;
-      min-height: 300px;
-      position: relative;
-    }
-
-    .portfolio-title-left {
-      left: -8rem;
-      width: 120px;
-    }
-    
+    .portfolio-title-text,
     .journal-title-text {
-      font-size: 2rem;
+      font-size: clamp(200%, 5.5vw, 300%);
     }
     
-    .journal-grid {
-      grid-template-columns: 1fr !important;
-      gap: 1rem !important;
-    }
-    
-    .journal-post {
-      padding: 0;
-    }
-
-    .journal-image {
-      height: 160px; /* Increased from 120px */
-    }
-
-    .journal-text {
-      padding: 0.75rem;
-      font-size: 0.9rem;
-    }
-    
-    .journal-title-container {
-      margin-bottom: 1.5rem;
+    .services-heading {
+      font-size: clamp(100%, 3vw, 140%);
+      padding-left: 4%;
+      padding-right: 4%;
     }
     
     .services-content-wrapper {
-      padding: 0 1.5rem 2rem 1.5rem !important; /* Further reduced padding for mobile, no top padding */
+      padding: 0 4% 3vh 4% !important;
       padding-top: 0 !important;
       margin-top: 0 !important;
     }
     
     .services-grid {
       display: flex !important;
-      gap: 1rem !important;
-      margin: 0 -1.5rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+      gap: 1.5vh !important;
+      margin-top: 6.25vh;
+      padding-left: 4%;
+      padding-right: 4%;
     }
     
-    .services-heading {
-      font-size: 1.4rem; /* Smaller font size for mobile */
-      font-weight: 500;
-      color: #171717;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    
-    .services-section {
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
+    .services-grid::before,
+    .services-grid::after {
+      width: 4%;
     }
     
     .service-item {
-      padding: 1.25rem 1rem;
-      font-size: 0.95rem;
+      padding: 1.5vh 2%;
+      font-size: clamp(90%, 2.2vw, 115%);
     }
     
-  .portfolio-container,
-    .services-container,
-    .journal-container {
-      padding: 0 0.5rem; /* further reduced mobile side padding */
+    .journal-title-container {
+      padding-left: 4%;
+      padding-right: 4%;
+      margin-bottom: 2vh;
     }
     
-    .brand-statement {
-      padding: 3rem 0 12rem 0; /* top padding adjusted for mobile */
-      margin-bottom: 8vh; /* reduced margin on mobile */
+    .journal-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5vh !important;
+    }
+
+    .journal-image {
+      height: 25%;
+      min-height: 25%;
+    }
+
+    .journal-text {
+      padding: 1vh;
+      font-size: clamp(90%, 2vw, 100%);
     }
     
     .brand-statement-content {
-      padding: 0 2rem;
+      padding: 0 4%;
+    }
+    
+    .brand-statement-svg {
+      padding: 0 4% !important;
     }
     
     .brand-statement-text {
-      font-size: 1.6rem;
+      font-size: clamp(110%, 3.5vw, 160%);
       font-weight: 300 !important;
       line-height: 1.2;
-      padding: 0 1.5rem;
+      padding: 0;
     }
-    /* Brand statement responsive */
-    .brand-statement-text {
-      font-size: 1.6rem;
-      font-weight: 300 !important;
-      text-indent: 0%;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      padding: 0 1.5rem;
-      line-height: 1.2;
-      text-align: left;
+    
+    .view-all-button {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+  }
+  
+  /* Tablet (768px - 1023px) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-content {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .hero-heading {
+      font-size: clamp(180%, 4.5vw, 260%) !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-heading {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-content-wrapper {
+      padding: 0 4% 3vh 4% !important;
+    }
+    
+    .services-grid {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-grid::before,
+    .services-grid::after {
+      width: 4%;
+    }
+    
+    .journal-title-container {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .brand-statement-content {
+      padding: 0 4%;
+    }
+    
+    .brand-statement-svg {
+      padding: 0 4% !important;
+    }
+    
+    .view-all-button {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+  }
+  
+  /* Laptop (1024px and above) */
+  @media (min-width: 1024px) {
+    .hero-content {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .hero-heading {
+      font-size: clamp(200%, 6vw, 380%) !important;
+    }
+    
+    .portfolio-container,
+    .services-container,
+    .journal-container {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-heading {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-content-wrapper {
+      padding: 0 4% 4vh 4% !important;
+    }
+    
+    .services-grid {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .services-grid::before,
+    .services-grid::after {
+      width: 4%;
+    }
+    
+    .journal-title-container {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+    
+    .brand-statement-content {
+      padding: 0 4%;
+    }
+    
+    .brand-statement-svg {
+      padding: 0 4% !important;
+    }
+    
+    .view-all-button {
+      padding-left: 4%;
+      padding-right: 4%;
     }
   }
 
+/* Removed homepage placeholder footer styles */
+/* Removed homepage placeholder footer styles */
 /* Removed homepage placeholder footer styles */
